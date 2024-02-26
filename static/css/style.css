@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(93, 161, 203);
+    text-align: center;
+    margin: 0;
+}
+
+table{
+    border: 5px black double;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+}
+td, th {
+    border: 1px dotted black;
+}
+
+
