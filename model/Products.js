@@ -15,7 +15,7 @@ class Products {
     }
 
     fetchProduct(req, res){
-        const qry = `SELECT prodID, prodImg,prodName, prodAmount
+        const qry = `SELECT prodID, prodImg,prodName, prodQuantity,prodAmount
                     FROM Products
                     WHERE prodID = ${req.params.id}`
         
