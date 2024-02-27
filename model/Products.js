@@ -44,14 +44,28 @@ class Products {
         })
     }
 
-    async alterProduct(req,res){
-        let data = req.body
-        const qry = `UPDATE Products SET? prodImg=?, prodName=?, prodQuantity=?, prodAmount=?, prodCategory=?, WHERE prodID = ${req.params.id}`
-        db.query(qry,[data],(err)=>{
-            if(err) throw err
-            res.json({status: res.statusCode,msg:"Product updated successfully"})
-        })
+    // async alterProduct(req,res){
+    //     let data = req.body 
+    //     const { prodImg, prodName, prodQuantity, prodAmount, prodCategory } = data
+    //     const qry = `UPDATE Products SET? prodImg=?, prodName=?, prodQuantity=?, prodAmount=?, prodCategory=?, WHERE prodID = ${req.params.id}`
+    //     db.query(qry,[data],(err)=>{
+    //         if(err) throw err
+    //         res.json({status: res.statusCode,msg:"Product updated successfully"})
+    //     })
+    // }
+
+    async alterProduct(req, res) {
+        let data = req.body;
+        const { prodImg, prodName, prodQuantity, prodAmount, prodCategory } = data;
+        const qry = `UPDATE Products SET prodImg=?, prodName=?, prodQuantity=?, prodAmount=?, prodCategory=? WHERE prodID = ?`;
+        db.query(qry, [prodImg, prodName, prodQuantity, prodAmount, prodCategory, req.params.id], (err) => {
+            if (err) {
+                throw err;
+            }
+            res.json({ status: res.statusCode, msg: "Product updated successfully" });
+        });
     }
+    
 }
 
 export {Products}
