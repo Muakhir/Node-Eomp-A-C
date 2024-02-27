@@ -108,4 +108,4 @@ class Login{
     }
 }
 
-export {Users}
+export {Users,Login}
