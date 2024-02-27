@@ -2,7 +2,7 @@ import { Connection as db } from "../config/index.js";
 
 class Products {
     fetchProducts(req, res){
-        const qry = `SELECT prodID, prodImg, prodName, prodQuantity, prodAmount
+        const qry = `SELECT prodID, prodImg, prodName, prodQuantity, prodAmount, prodCategory
                     FROM Products;`
         
                     db.query(qry,(err, results)=>{
@@ -15,7 +15,7 @@ class Products {
     }
 
     fetchProduct(req, res){
-        const qry = `SELECT prodID, prodImg,prodName, prodQuantity,prodAmount
+        const qry = `SELECT prodID, prodImg,prodName, prodQuantity,prodAmount,prodCategory
                     FROM Products
                     WHERE prodID = ${req.params.id}`
         
@@ -46,7 +46,7 @@ class Products {
 
     async alterProduct(req,res){
         let data = req.body
-        const qry = `UPDATE Products SET? WHERE prodID = ${req.params.id}`
+        const qry = `UPDATE Products SET? prodImg=?, prodName=?, prodQuantity=?, prodAmount=?, prodCategory=?, WHERE prodID = ${req.params.id}`
         db.query(qry,[data],(err)=>{
             if(err) throw err
             res.json({status: res.statusCode,msg:"Product updated successfully"})
