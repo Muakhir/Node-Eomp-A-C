@@ -65,9 +65,7 @@ class Users{
             res.json({status: res.statusCode,msg:"User updated successfully"})
         })
     }
-}
 
-class Login{
     login(req, res) {
         const {emailAdd, userPwd} = req.body 
         const qry = `
@@ -84,13 +82,9 @@ class Login{
                     msg: "You provided a wrong email address."
                 })
             }else {
-                // Validate password
                 const validPass = await compare(userPwd, result[0].userPwd)
                 if(validPass) {
-                    const token = createToken({
-                        emailAdd, 
-                        userPwd
-                    })
+                    const token = createToken({emailAdd,userPwd})
                     res.json({
                         status: res.statusCode,
                         msg: "You're logged in",
@@ -107,5 +101,7 @@ class Login{
         })
     }
 }
+
+
 
 export {Users,Login}
