@@ -1,22 +1,22 @@
-<template lang="">
+<template>
     <div>
-        
-        <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+      <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="spinner-border text-dark" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
-        </div>
-
+      </div>
     </div>
-</template>
-<script>
-export default {
+  </template>
+  
+  <script>
+  export default {
     
-}
-</script>
-
-
-
-<style scoped>
-    
-</style>
+  }
+  </script>
+  
+  <style scoped>
+  .vh-100 {
+    height: 100vh;
+  }
+  </style>
+  
