@@ -8,8 +8,14 @@
       <h1>Today</h1>
 
       <div class="buttons">
-        <button class="get-started-btn">Get Started</button>
-        <button class="meal-kits-btn">Meal Kits</button>
+
+        <router-link to="/products" >
+          <button class="meal-kits-btn">Meal Kits</button>
+        </router-link>
+
+        <router-link to="/about">
+          <button class="get-started-btn">Learn More</button>
+        </router-link>
       </div>
     </div>
 

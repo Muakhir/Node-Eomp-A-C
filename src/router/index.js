@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ProductDetails from '../views/productDetails.vue';
 
 
 const routes = [
@@ -43,8 +44,9 @@ const routes = [
   },
   {
     path: '/product/:id',
-    name: 'ProductDetails',
-    component: () => import(/* webpackChunkName: "about" */ '../components/productDetails.vue'),
+    name: 'product',
+    component: ProductDetails,
+    props: true, // This allows the route params to be passed as props
   },
 ]
 

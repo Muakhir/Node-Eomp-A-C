@@ -1,8 +1,11 @@
-// store/index.js
 import { createStore } from 'vuex';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 const baseURL = 'https://node-eomp-a-c.onrender.com';
+
+
 
 export default createStore({
   state: {
@@ -51,6 +54,7 @@ export default createStore({
       }
       window.location.reload()
     },
+    // add product code
     async registerProduct({ commit }, newProduct) {
       try {
         let {data} = await axios.post(baseURL + '/products/addProduct', newProduct);
@@ -82,7 +86,7 @@ export default createStore({
       try {
         // Make PATCH request to update user
         await axios.patch(baseURL + '/users/' + update.userID +"/updateUser", update);
-        // Fetch updated users after successful update
+        // Fetch updated users after it update
         const { data } = await axios.get(baseURL + '/users');
         // Commit mutation to update the state with the new users data
         // commit('setUsers', data.results);
