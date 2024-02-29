@@ -12,7 +12,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <!-- Modal content (your form) -->
+              <!-- Modal content -->
               <div class="inputM">
                 <input class="info" v-model="userID" type="text" placeholder="User ID:"/>
                 <input class="info" v-model="firstName" type="text" placeholder="User Name:"/>

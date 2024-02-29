@@ -27,13 +27,13 @@
 
             <!-- Slot for the Footer -->
             <template v-slot:cardF>
-              <p class="card-text">
-                {{ product.prodQuantity }} Available
-                <br>
-                {{ product.prodCategory }}
-                <br>
-                <p class="money">R{{ product.prodAmount }} </p>
-              </p>
+              <div class="card-text">
+              {{ product.prodQuantity }} Available
+              <br>
+              {{ product.prodCategory }}
+              <br>
+              <p class="money">R{{ product.prodAmount }} </p>
+            </div>
               <router-link :to="{ name: 'product', params: { id: product.prodID } }">
                 <button class="btn btn-primary">View Details</button>
               </router-link>
@@ -194,7 +194,7 @@ h1 {
 }
 .row {
   display: flex;
-  justify-content: space-between; /* Add this line */
+  justify-content: space-between;
 }
 
 .card-text {
@@ -225,7 +225,7 @@ h1 {
 
 @media screen and (min-width: 900px) {
   .card {
-    width: 80%; /* Adjust the width for larger screens */
+    width: 80%; 
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -237,7 +237,7 @@ h1 {
 
 @media screen and (min-width: 860px) {
   .card {
-    width: 80%; /* Adjust the width for larger screens */
+    width: 80%; 
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -249,7 +249,7 @@ h1 {
 
 @media screen and (max-width: 720px) {
   .card {
-    width: 80%; /* Full width on screens up to 720px */
+    width: 80%; 
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -286,7 +286,7 @@ h1 {
   }
 
   .card {
-    width: 80%; /* Full width on screens up to 720px */
+    width: 80%; 
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -303,7 +303,7 @@ h1 {
 
 @media screen and (max-width: 300px) {
   .card {
-    width: 80%; /* Full width on screens up to 720px */
+    width: 80%; 
     margin-left: 20px;
     margin-right: 20px;
   }

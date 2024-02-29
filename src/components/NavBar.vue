@@ -109,7 +109,7 @@
 
 /* Active styling for the hamburger icon */
 .navbar-toggler-icon:hover {
-  background-color: #42b983; /* Change color on hover if desired */
+  background-color: #42b983; /* Change color on hover */
 }
 
     li{
