@@ -20,10 +20,12 @@ app.use(
         extended:true
     }),
     cookieParser(),
-    cors({
-        origin: '*',
-        credentials:true
-    })
+    cors(
+    //     {
+    //     origin: '*',
+    //     credentials:true
+    // }
+    )
 )
 
 app.use((req, res, next) =>{
