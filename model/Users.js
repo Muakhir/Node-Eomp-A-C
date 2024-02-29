@@ -29,7 +29,7 @@ class Users{
             emailAdd: data.emailAdd,
             userPwd: data.userPwd
         }
-        const qry = `INSERT INTO Users SET?;`
+        const qry = `INSERT INTO Users SET? WHERE userID = ${req.params.id} ;`
 
         db.query(qry, [data], (err)=>{
             if(err) {
