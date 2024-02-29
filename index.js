@@ -28,7 +28,10 @@ app.use(
         extended:true
     }),
     cookieParser(),
-    cors()
+    cors({
+        origin: '*',
+        credentials:true
+    })
 )
 
 app.get('^/$|eomp', (req,res)=>{
