@@ -37,37 +37,37 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Use the full viewport height */
+  height: 100vh; 
   margin-top: -50px;
 }
 
 .text {
-  text-align: center; /* Center the text */
-  margin-right: 20px; /* Add spacing between text and image */
+  text-align: center; 
+  margin-right: 20px; 
 }
 
 h3 {
   color: #4FB860;
   font-size: 35px;
   font-weight: 400;
-  margin-bottom: 30px; /* Adjust the margin-bottom */
+  margin-bottom: 30px; 
 }
 
 h1 {
   color: black;
   font-weight: 600;
   font-size: 50px;
-  margin: 0; /* Remove default margin for h1 */
+  margin: 0; 
 }
 
 .buttons {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
-  margin-top: 40px; /* Adjust the margin-top */
+  justify-content: center; 
+  margin-top: 40px; 
 }
 
 button {
-  margin: 0 10px; /* Add some horizontal margin to buttons */
+  margin: 0 10px; 
   padding: 10px 20px;
   font-size: 18px;
   cursor: pointer;
@@ -77,68 +77,81 @@ button {
   background-color: #87EF97;
   color: black;
   border: none;
-  border-radius: 50px;
+  border-radius: 30px;
   font-weight: 500;
+  padding: 20px;
+  transition: 0.5s;
+}
+.get-started-btn:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
 .meal-kits-btn {
   background-color: #EAF476;
   color: black;
   border: none;
-  border-radius: 50px;
+  border-radius: 30px;
   font-weight: 500;
+  padding: 20px;
+  transition: 0.5s;
+}
+
+.meal-kits-btn:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 
 .food1 {
-  max-width: 70%; /* Make the image responsive */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 70%; 
+  height: auto;
 }
 
 .img {
-  text-align: center; /* Center the image horizontally */
+  text-align: center; 
   padding-top: 20px;
-  margin-top: 20px; /* Add some margin to the top */
+  margin-top: 20px; 
 }
-
+/* Responsiveness for mobile devices */
 @media screen and (max-width: 600px) {
   .container {
-    flex-direction: column; /* Stack items vertically on small screens */
-    text-align: center; /* Center text on small screens */
-    margin-top: 30px
+    flex-direction: column; 
+    text-align: center; 
+    margin-top: 30px;
   }
 
   .text {
-    margin-right: 0; /* Remove margin for text on small screens */
+    margin-right: 0; 
   }
 
   .buttons {
-    flex-direction: column; /* Stack buttons vertically on small screens */
-    margin-top: 10px; /* Adjust margin for buttons on small screens */
+    flex-direction: column; 
+    margin-top: 10px; 
   }
 
   .buttons button {
-    margin: 10px 0; /* Add spacing between buttons on smaller screens */
+    margin: 10px 0; 
     margin-left: 20px;
     margin-right: 20px;
   }
 
   .img {
-    order: 2; /* Move the image to the top on small screens */
-    margin-top: 20px; /* Add margin to the top of the image on small screens */
+    order: 2; 
+    margin-top: 20px; 
   }
   
   h3 {
     color: #4FB860;
     font-size: 25px;
     font-weight: 400;
-    margin-bottom: 30px; /* Adjust the margin-bottom */
+    margin-bottom: 30px; 
   }
 
   h1 {
     color: black;
     font-weight: 600;
     font-size: 35px;
-    margin: 0; /* Remove default margin for h1 */
+    margin: 0; 
   }
 }
 </style>

@@ -5,8 +5,8 @@
     <router-link to="/" class="navbar-brand">
       <span class="logo">
         Kittleys
-        <i class="fa fa-circle" style="font-size:9px"></i>
       </span>
+      <i class="fa fa-circle animated-dot" style="font-size:9px"></i>
     </router-link>
 
     <button
@@ -44,121 +44,140 @@
 </template>
 
   
-  <script>
+<script>
   export default {
   }
-  </script>
+
+</script>
     
-    <style scoped>
+<style scoped>
   
-    /* Custom styling for the navbar */
-    .navbar {
-      background-color: transparent !important;
-      padding-top: 20px;
-    }
+/* Custom styling for the navbar */
+.navbar {
+  background-color: transparent !important;
+  padding-top: 20px;
+}
     
-    .logo {
-      margin-left: 50px;
-      font-size: 30px !important;
-    }
+.logo {
+  margin-left: 50px;
+  font-size: 40px !important;
+}
     
-    .navbar-brand .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: black !important;
-    }
-    .fa{
-      font-size: 50px;
-      color: #05FF00;
-      border-radius: 50px;
-      margin-right: 25px;
-    }
+.navbar-brand .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black !important;
+}
+.fa{
+  font-size: 50px;
+  color: #05FF00;
+  border-radius: 50px;
+  margin-right: 25px;
+}
+i{
+  margin-left: 8px;
+}
+.navbar-nav {
+  text-align: center; 
+}
     
-    .navbar-nav {
-      text-align: center; 
-    }
-    
-    .navbar-nav .nav-item {
-      margin-right: 15px; 
-    }
-    
-    .navbar-nav .nav-item .nav-link {
-      color: black !important;
-    }
+.navbar-nav .nav-item {
+  margin-right: 15px; 
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: black !important;
+}
  
-    /* Style for the CONTACT US button */
-    .btn-primary {
-      background-color: #87EF97;
-      padding: 13px;
-      color: rgb(0, 0, 0);
-      border: none;
-      margin-right: 80px;
-      border-radius: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      font-size: 18px;
-    }
-    .btn-primary:hover{
-      background-color: #6bad75;
-      color: rgb(0, 0, 0);
-    }
-    .navbar-toggler-icon {
+/* Style for the CONTACT US button */
+.btn-primary {
+  background-color: #87EF97;
+  padding: 13px;
+  color: rgb(0, 0, 0);
+  border: none;
+  margin-right: 80px;
+  border-radius: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.5s;
+}
+.btn-primary:hover{
+  background-color: #2c6935;
+  color: white;
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+.navbar-toggler-icon {
   background-color: black;
   border: 2px solid black;
 }
 
 /* Active styling for the hamburger icon */
 .navbar-toggler-icon:hover {
-  background-color: #42b983; /* Change color on hover */
+  background-color: #42b983;
 }
 
-    li{
-      font-weight: 500;
-      font-size: 20px;
-      text-align: center;
-    }
+li{
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
     
+/* Hover effect for navbar links */
+  .navbar-nav .nav-item .nav-link:hover {
+  color: #42b983 !important;
+  transform: scale(1.1);
+}
   
-    /* Hover effect for navbar links */
-    .navbar-nav .nav-item .nav-link:hover {
-      color: #42b983 !important;
-      transform: scale(1.1);
-    }
+/* Active styling for navbar links */
+  .navbar-nav .nav-item .active-link {
+  color: #42b983 !important;
+  transform: scale(1.1);
+}
+.navbar-nav .nav-item .nav-link,
+.navbar-nav .nav-item .active-link {
+  transition: color 0.3s, transform 0.3s;
+}
   
-    /* Active styling for navbar links */
-    .navbar-nav .nav-item .active-link {
-      color: #42b983 !important;
-      transform: scale(1.1);
-    }
-  
-    .navbar-nav .nav-item .nav-link,
-    .navbar-nav .nav-item .active-link {
-      transition: color 0.3s, transform 0.3s;
-    }
-  
-    @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
-      /* Style for the CONTACT US button */
-    .btn-primary {
-      background-color: transparent;
-      /* padding: 13px; */
-      color: rgb(0, 0, 0);
-      border: none;
-      margin-right: 10px;
-      border-radius: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      font-size: 20px;
-      margin-top: 80px !important;
-    }
-    .btn-primary:hover{
-      color: #42b983 !important;
-      transform: scale(1.1);
-      background: transparent;
-      transition: color 0.3s, transform 0.3s;
-    }
+/* Style for the CONTACT US button */
+  .btn-primary {
+  background-color: transparent;
+  /* padding: 13px; */
+  color: rgb(0, 0, 0);
+  border: none;
+  margin-right: 10px;
+  border-radius: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 20px;
+  margin-top: 80px !important;
+}
+  .btn-primary:hover{
+  color: #42b983 !important;
+  transform: scale(1.1);
+  background: transparent;
+  transition: color 0.3s, transform 0.3s;
+}
 
-    }
+}
+/* Keyframe animation for the dot */
+@keyframes expandDot {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
-    </style>
-    
+/* Apply animation to the dot */
+.animated-dot {
+  animation: expandDot 2s infinite; /* You can adjust the duration and iteration count */
+}
+</style>

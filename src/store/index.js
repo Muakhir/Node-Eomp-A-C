@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 const baseURL = 'https://node-eomp-a-c.onrender.com';
 
@@ -25,6 +25,7 @@ export default createStore({
   },
   actions: {
     // CRUD FOR PRODUCTS
+    // function to get products
     async getProducts({ commit }) {
       try {
         let { data } = await axios.get(baseURL + '/products');
@@ -33,14 +34,16 @@ export default createStore({
         console.error('Error getting products:', error);
       }
     },
+    // function to deleteProduct
     async deleteProduct({ commit }, id) {
       try {
         await axios.delete(baseURL  + '/products/' + id + '/deleteProduct');
       } catch (error) {
         console.error('Error deleting Product:', error);
       }
-      window.location.reload()
+      // window.location.reload()
     },
+    // function to update products
     async updateProduct({ commit }, update) {
       try {
         // Make PATCH request to update product
@@ -62,7 +65,7 @@ export default createStore({
       } catch (error) {
         console.error('Error adding Product:', error);
       }
-      window.location.reload()
+      // window.location.reload()
     },
 
     // CRUD FOR USERS
@@ -74,14 +77,16 @@ export default createStore({
         console.error('Error getting users:', error);
       }
     },
+    // this deletes users
     async deleteUser({ commit }, id) {
       try {
         await axios.delete(baseURL  + '/users/' + id + '/deleteUser');
       } catch (error) {
         console.error('Error deleting User:', error);
       }
-      window.location.reload()
+      // window.location.reload()
     },
+    // this function updates/edits users
     async updateUser({ commit, state }, update) {
       try {
         // Make PATCH request to update user
@@ -93,15 +98,17 @@ export default createStore({
       } catch (error) {
         console.error('Error updating Users:', error);
       }
+      window.location.reload()
     },
+    // this is used to add users
     async registerUser({ commit }, newUser) {
       try {
         let {data} = await axios.post(baseURL + '/users/register', newUser);
-        commit('setUsers', data);
+        commit('setUsers', data.results);
       } catch (error) {
         console.error('Error adding User:', error);
       }
-      window.location.reload()
+      // window.location.reload()
     }, 
   },
   modules: {}
