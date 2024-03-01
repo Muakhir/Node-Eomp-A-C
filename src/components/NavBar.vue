@@ -176,8 +176,8 @@ li{
   }
 }
 
-/* Apply animation to the dot */
+/* This Applies animation to the dot */
 .animated-dot {
-  animation: expandDot 2s infinite; /* You can adjust the duration and iteration count */
+  animation: expandDot 2s infinite; 
 }
 </style>

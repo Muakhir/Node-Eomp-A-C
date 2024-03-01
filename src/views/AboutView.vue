@@ -74,6 +74,7 @@ img {
   .container {
     flex-direction: column;
     margin-top: 20px;
+    margin-bottom: 250px;
   }
 
   .about {

@@ -26,24 +26,24 @@
       </div>
 
       <div class="form-container">
-        <form action="https://formspree.io/f/mgegykyq" method="POST" class="contact-form">
+        <form action="https://formspree.io/f/mgegykyq" method="POST" class="contact-form"  ref="form" @submit.prevent="submitForm">
           <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="text" id="name" name="name" placeholder="Enter your name" >
           </div>
           <div class="form-group">
             <label for="surname">Surname:</label>
-            <input type="text" id="surname" name="surname" placeholder="Enter your surname" required>
+            <input type="text" id="surname" name="surname" placeholder="Enter your surname" >
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" placeholder="Enter your email" >
           </div>
           <div class="form-group">
             <label for="message">Message:</label>
-            <textarea id="message" name="message" placeholder="Type your message here" required></textarea>
+            <textarea id="message" name="message" placeholder="Type your message here"></textarea>
           </div>
-          <button type="submit">Send</button>
+          <button type="submit" @click="validateForm">Send</button>
         </form>
       </div>
     </div>
@@ -52,7 +52,23 @@
 
 <script>
 export default {
+  methods: {
+    validateForm() {
+      // this is the validation logic 
+      const name = this.$refs.form.querySelector('#name').value;
+      const surname = this.$refs.form.querySelector('#surname').value;
+      const email = this.$refs.form.querySelector('#email').value;
+      const message = this.$refs.form.querySelector('#message').value;
 
+      // Check if any field is empty
+      if (!name || !surname || !email || !message) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      this.submitForm();
+    }
+  }
 }
 </script>
 

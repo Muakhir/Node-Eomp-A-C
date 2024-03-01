@@ -8,7 +8,7 @@
       <div class="admin">
         <!-- Edit inputs -->
         <div class="inputM">
-    
+            <!-- input fields for products data -->
             <input class="info" v-model="prodID" type="text" placeholder="Product ID:" />
             <input class="info" v-model="prodName" type="text" placeholder="Product Name:"/>
             <input class="info" v-model="prodQuantity" type="text" placeholder="Product Quantity:"/>
@@ -26,7 +26,7 @@
         </div>
             
         <!-- Product Table -->
-        <table class="table table-bordered">
+        <table class="table table-bordered table-responsive">
           <thead >
             <tr>
               <th>ID</th>
@@ -40,6 +40,8 @@
           </thead>
           <tbody>
             <tr v-for="item in getProducts" :key="item.prodID">
+              
+
               <td>{{ item.prodID }}</td>
               <td><img :src="item.prodImg" alt="Product Image" ></td>
               <td>{{ item.prodName }}</td>
@@ -48,20 +50,17 @@
               <td>{{ item.prodAmount }}</td>
               <td>
                 <button class="btn1" @click="deleteProduct(item.prodID)">Delete</button>
-                <button class="btn2" @click="editProduct(item)">Edit</button>
+                <!-- <button class="btn2" @click="editProduct(item)">Edit</button> -->
+
+                <!-- brings the product modal -->
+                <ProductModal :product="item" @edit-product="editProduct(item)" />
+
               </td>
             </tr>
           </tbody>
         </table>
     
-      <!-- MODAL -->
-      <!-- <ProductModal
-  :isModalOpen="isProductModalOpen"
-  @closeModal="closeProductModal"
-  @submitInput="submitProductInput"
-/> -->
-
-    
+  
         <h1 class="pCrud">User Crud</h1>
     
         <div class="users">
@@ -124,7 +123,8 @@
               <!-- <td>{{ item.userPwd }}</td> -->
               <td>
                 <button class="btn1" @click="deleteUser(item.userID)">Delete</button>
-                <button class="btn2" @click="updateUser(item)">Edit</button>
+
+                <userModal :item="item" />
               </td>
             </tr>
           </tbody>
@@ -142,18 +142,18 @@
     
 <script>
 import ProductModal from '../components/ProductModal.vue';
+import userModal from '../components/userModal.vue'
 import Swal from 'sweetalert2';
 
 
 export default {
 
 components:{
-  ProductModal
+  ProductModal,
+  userModal
 },
 data(){
   return{
-    isProductModalOpen: false,
-    selectedProduct: {},
     prodID: '',
     prodName: '',
     prodImg: '',
@@ -191,6 +191,7 @@ computed: {
     userRole: this.userRole,
     userPwd: this.userPwd
           
+    // this pops up a sweet alert pop up when a user is added
 }).then(() => {
     Swal.fire('User Added!', 'The user has been added.', 'success')
     }).catch((error) => {
@@ -204,6 +205,16 @@ computed: {
     this.$store.dispatch('getUsers') 
 },
 methods: {      
+
+  editProduct(product) {
+    // Emit the 'edit-product' event with the product data
+    this.$emit('edit-product', product);
+    // ($emit) this allows me to create custom events in child components and listen for those events in parent components
+  },
+  editUser(user) {
+    // Emit the 'edit-product' event with the product data
+    this.$emit('edit-user', user);
+  },
   // Product methods
   deleteProduct(prodID) {
   Swal.fire({
@@ -269,25 +280,7 @@ methods: {
 refreshUsersTable() {
   this.$store.dispatch('getUsers');
 },
-// Add/Edit product methods
-  editProduct(product) {
-  // Set the selectedProduct and open the modal
-  console.log("Editing product:", product);
-  this.selectedProduct = { ...product };
-  this.isProductModalOpen = true;
-},
-  closeProductModal() {
-    // Close the modal and reset the selectedProduct
-    this.isProductModalOpen = false;
-    this.selectedProduct = null;
-  },
-    submitProductInput(updatedProduct) {
-    // Handle the submitted input, e.g., update the product in the store
-    this.$store.dispatch('updateProduct', updatedProduct);
 
-    // Close the modal
-    this.closeProductModal();
-  },
   registerProduct(){
     let product ={
     prodID: this.prodID,

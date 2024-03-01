@@ -109,8 +109,11 @@ button {
 
 .img {
   text-align: center; 
-  padding-top: 20px;
+  /* padding-top: 20px; */
   margin-top: 20px; 
+  /* height: 80%;
+  width: auto; */
+  max-width: 800px
 }
 /* Responsiveness for mobile devices */
 @media screen and (max-width: 600px) {

@@ -1,142 +1,124 @@
 <template>
-  <div>
-    <!-- Button to open the modal -->
-    <button @click="openModal">Open Modal</button>
-
-    <!-- The modal -->
-    <div v-if="isModalOpen" class="modal">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn modalButton" data-bs-toggle="modal" data-bs-target="#updateProductModal">
+    Edit
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="updateProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" @show.bs.modal="updateModalData">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <!-- Modal header -->
         <div class="modal-header">
-          <span class="close" @click="closeModal">&times;</span>
-          <h2>Product Input Modal</h2>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <!-- Modal body with input fields -->
         <div class="modal-body">
-          <label for="prodID">Product ID:</label>
-          <input class="info" v-model="prodID" type="text" id="prodID" placeholder="Product ID:" />
+          <section @submit.prevent="updateProduct()">
+            <div class="mb-3">
+              <input type="text" class="form-control w-50 mx-auto" required="required" placeholder="Product ID" v-model="payload.prodID">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control w-50 mx-auto" required="required" placeholder="Product Name" v-model="payload.prodName">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control w-50 mx-auto" required="required" placeholder="Product Image" v-model="payload.prodImg">
+            </div>
 
-          <label for="prodName">Product Name:</label>
-          <input class="info" v-model="prodName" type="text" id="prodName" placeholder="Product Name:" />
-
-          <label for="prodQuantity">Product Quantity:</label>
-          <input class="info" v-model="prodQuantity" type="text" id="prodQuantity" placeholder="Product Quantity:" />
-
-          <label for="prodAmount">Product Amount:</label>
-          <input class="info" v-model="prodAmount" type="text" id="prodAmount" placeholder="Product Amount:" />
-
-          <label for="prodImg">Product Image URL:</label>
-          <input class="info" v-model="prodImg" type="text" id="prodImg" placeholder="Product Image URL:" />
-
-          <p class="cat">Category:</p>
-          <select v-model="prodCategory">
-            <option value="Vegan">Vegan</option>
-            <option value="Non-Vegan">Non-Vegan</option>
+            <div class="mb-3 text-center">
+          <label for="category" class="form-label">Product Category</label>
+          <select id="category" class="form-select w-50 mx-auto" required v-model="payload.prodCategory">
+            <option value="vegan">Vegan</option>
+            <option value="non-vegan">Non-Vegan</option>
           </select>
         </div>
 
-        <!-- Modal footer with buttons -->
-        <div class="modal-footer">
-          <button @click="closeModal">Cancel</button>
-          <button @click="submitInput">Submit</button>
+            <div class="mb-3">
+              <input type="text" class="form-control w-50 mx-auto" required="required" placeholder="Quantity" v-model="payload.prodQuantity">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control w-50 mx-auto" placeholder="Amount/Price" v-model="payload.prodAmount">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success" @click="updateProduct()">Update</button>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
 export default {
-  props: {
-    isModalOpen: Boolean,
-    selectedProduct: Object,
-  },
+  name: 'UpdateProduct',
   data() {
     return {
-      prodID: "",
-      prodName: "",
-      prodQuantity: "",
-      prodAmount: "",
-      prodImg: "",
-      prodCategory: "Vegan",
+      payload: {
+        prodID: '',
+        prodName: '',
+        prodImg: '',
+        prodCategory: '',
+        prodQuantity: '',
+        prodAmount: ''
+      }
     };
   },
   methods: {
-    openModal() {
-      if (this.selectedProduct) {
-        // Set values when the modal is opened
-        this.prodID = this.selectedProduct.prodID;
-        this.prodName = this.selectedProduct.prodName;
-        this.prodQuantity = this.selectedProduct.prodQuantity;
-        this.prodAmount = this.selectedProduct.prodAmount;
-        this.prodImg = this.selectedProduct.prodImg;
-        this.prodCategory = this.selectedProduct.prodCategory;
+    async updateProduct() {
+      console.log(this.$data)
+      try {
+        this.$store.dispatch('updateProduct', { id: this.payload.prodID, data: this.payload });
+      } catch (error) {
+        console.error(error);
       }
-      this.isModalOpen = true;
+      window.location.reload();
     },
-    closeModal() {
-      this.isModalOpen = false;
+    updateModalData() {
+      // Check if the product prop is provided
+      if (this.product) {
+        // Update the payload data with the product details
+        this.payload = {
+          prodID: this.product.prodID,
+          prodName: this.product.prodName,
+          prodImg: this.product.prodImg,
+          prodCategory: this.product.prodCategory,
+          prodQuantity: this.product.prodQuantity,
+          prodAmount: this.product.prodAmount,
+        };
+      }
     },
-    submitInput() {
-      const productData = {
-        prodID: this.prodID,
-        prodName: this.prodName,
-        prodQuantity: this.prodQuantity,
-        prodAmount: this.prodAmount,
-        prodImg: this.prodImg,
-        prodCategory: this.prodCategory,
-      };
-      console.log("Submitted input:", productData);
-
-      // Close the modal
-      this.closeModal();
-    },
-  },
+  }
 };
 </script>
 
 <style scoped>
-/* Styles for the modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  font-family: 'Poppins', sans-serif;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.close {
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
+.modalButton {
+  width: 100%;
+  background-color: #87EF97;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
   cursor: pointer;
+  margin: 15px 0;
+  font-size: 20px;
+  transition: 0.5s;
+  font-family: 'Poppins', sans-serif;
 }
 
-.modal-body {
-  margin-bottom: 15px;
+.modalButton:hover {
+  transition: 0.5s;
+  transform: scale(1.1);
+  color: white;
+  background-color: #215e2a;
 }
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
+label{
+  text-align: center;
 }
 </style>

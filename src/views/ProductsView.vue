@@ -288,7 +288,7 @@ h1 {
   .card {
     width: 80%; 
     margin-left: 20px;
-    margin-right: 20px;
+    margin-right: 65px;
   }
 
   .card-img-top {

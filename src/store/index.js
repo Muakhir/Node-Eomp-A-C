@@ -45,17 +45,18 @@ export default createStore({
     },
     // function to update products
     async updateProduct({ commit }, update) {
+      console.log(update.data);
       try {
         // Make PATCH request to update product
-        await axios.patch(baseURL + '/products/' + update.prodID +"/updateProduct", update);
+        await axios.patch(baseURL + '/products/' + update.id +"/updateProduct", update.data);
         // Fetch updated products after successful update
-        const { data } = await axios.get(baseURL + '/products');
+        // const { data } = await axios.get(baseURL + '/products');
         // Commit mutation to update the state with the new product data
         // commit('setProducts', data.results);
       } catch (error) {
         console.error('Error updating Product:', error);
       }
-      window.location.reload()
+      // window.location.reload()
     },
     // add product code
     async registerProduct({ commit }, newProduct) {
@@ -87,10 +88,10 @@ export default createStore({
       // window.location.reload()
     },
     // this function updates/edits users
-    async updateUser({ commit, state }, update) {
+    async updateUser({ commit }, update) {
       try {
-        // Make PATCH request to update user
-        await axios.patch(baseURL + '/users/' + update.userID +"/updateUser", update);
+        console.log(update.data)
+        await axios.patch(baseURL + '/users/' + update.id +"/updateUser", update.data);
         // Fetch updated users after it update
         const { data } = await axios.get(baseURL + '/users');
         // Commit mutation to update the state with the new users data
@@ -108,7 +109,7 @@ export default createStore({
       } catch (error) {
         console.error('Error adding User:', error);
       }
-      // window.location.reload()
+      window.location.reload()
     }, 
   },
   modules: {}
